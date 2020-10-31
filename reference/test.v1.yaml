@@ -1,0 +1,57 @@
+openapi: 3.0.0
+info:
+  title: test
+  version: '1.0'
+  description: test
+  contact:
+    name: API Support
+    url: 'https://api.peachvideo.com/support'
+    email: pi.support@peachvideo.com
+servers:
+  - url: 'http://localhost:3000'
+tags:
+  - name: Account
+    description: Account api collection
+  - name: Campaign
+    description: Campaign api collection
+paths:
+  /accounts:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+          headers: {}
+      operationId: get-accounts
+      description: retrieve a list of accounts
+components:
+  schemas:
+    Account:
+      title: Account
+      type: object
+      x-examples:
+        example-1:
+          id: string
+      properties:
+        id:
+          type: integer
+          description: unique identifier for an account
+        name:
+          type: string
+          description: account name
+      description: Account that has been arranged with Peach
+  securitySchemes:
+    API Key - 1:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: ''
+          refreshUrl: ''
+          scopes: {}
