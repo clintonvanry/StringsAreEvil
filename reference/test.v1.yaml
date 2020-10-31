@@ -41,6 +41,31 @@ paths:
       description: retrieve a list of accounts
       security:
         - API Key - 1: []
+  '/campaign/{campaignId}':
+    get:
+      summary: Retrieve campaign by an identifier
+      tags:
+        - Campaign
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Campaign'
+      operationId: get-campaign
+      description: Retrieve a specific campaign by an identifier
+      security:
+        - API Key - 1: []
+    parameters:
+      - schema:
+          type: integer
+          format: int64
+          minimum: 1
+        name: campaignId
+        in: path
+        description: Campaign identifier
+        required: true
 components:
   schemas:
     Account:
@@ -50,14 +75,34 @@ components:
         example-1:
           id: 1920
           name: Peach Demo
+      description: Account that has been arranged with Peach
       properties:
         id:
           type: integer
           description: unique identifier for an account
+          format: int64
+          minimum: 1
         name:
           type: string
           description: account name
-      description: Account that has been arranged with Peach
+          minLength: 1
+          maxLength: 256
+    Campaign:
+      title: Campaign
+      type: object
+      x-examples:
+        example-1:
+          id: 1000
+          name: Pepsi
+      properties:
+        id:
+          type: integer
+          format: int64
+          minimum: 1
+        name:
+          type: string
+          minLength: 1
+          maxLength: 256
   securitySchemes:
     API Key - 1:
       type: oauth2
