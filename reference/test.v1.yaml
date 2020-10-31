@@ -41,6 +41,7 @@ paths:
       description: retrieve a list of accounts
       security:
         - API Key - 1: []
+      parameters: []
   '/campaign/{campaignId}':
     get:
       summary: Retrieve campaign by an identifier
@@ -62,6 +63,7 @@ paths:
       description: Retrieve a specific campaign by an identifier
       security:
         - API Key - 1: []
+      parameters: []
     parameters:
       - schema:
           type: integer
