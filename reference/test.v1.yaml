@@ -6,7 +6,7 @@ info:
   contact:
     name: API Support
     url: 'https://api.peachvideo.com/support'
-    email: pi.support@peachvideo.com
+    email: api.support@peachvideo.com
 servers:
   - url: 'http://localhost:3000'
 tags:
@@ -17,8 +17,9 @@ tags:
 paths:
   /accounts:
     get:
-      summary: Your GET endpoint
-      tags: []
+      summary: Retrieve a list of accounts
+      tags:
+        - Account
       responses:
         '200':
           description: OK
@@ -28,9 +29,18 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Account'
+              examples:
+                example-listaccounts:
+                  value:
+                    - id: 1920
+                      name: Peach Demo UK
+                    - id: 1921
+                      name: Peach Demo Germany
           headers: {}
       operationId: get-accounts
       description: retrieve a list of accounts
+      security:
+        - API Key - 1: []
 components:
   schemas:
     Account:
@@ -38,7 +48,8 @@ components:
       type: object
       x-examples:
         example-1:
-          id: string
+          id: 1920
+          name: Peach Demo
       properties:
         id:
           type: integer
