@@ -22,7 +22,7 @@ paths:
         - Account
       responses:
         '200':
-          description: OK
+          description: Successful Account Retrieval
           content:
             application/json:
               schema:
@@ -48,7 +48,7 @@ paths:
         - Campaign
       responses:
         '200':
-          description: OK
+          description: Successful retrieve of a campaign
           content:
             application/json:
               schema:
