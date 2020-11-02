@@ -60,6 +60,9 @@ paths:
                   value:
                     id: 1000
                     name: Pepsi
+        '404':
+          $ref: '#/components/responses/NotFound'
+          
       operationId: get-campaign
       description: Retrieve a specific campaign by an identifier
       security:
@@ -75,6 +78,13 @@ paths:
         description: Campaign identifier
         required: true
 components:
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Account:
       title: Account
@@ -111,6 +121,17 @@ components:
           type: string
           minLength: 1
           maxLength: 256
+    Error:
+      title: Error
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      required:
+        - code
+        - message
   securitySchemes:
     Peach Authentication:
       type: oauth2
