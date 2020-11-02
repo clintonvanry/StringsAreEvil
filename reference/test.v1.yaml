@@ -1,14 +1,15 @@
 openapi: 3.0.0
 info:
-  title: test
+  title: Peach Campaign API
   version: '1.0'
-  description: test
+  description: A collection of API to create and distribute campaign across the world
   contact:
     name: API Support
     url: 'https://api.peachvideo.com/support'
     email: api.support@peachvideo.com
 servers:
   - url: 'http://localhost:3000'
+    description: mock server
 tags:
   - name: Account
     description: Account api collection
