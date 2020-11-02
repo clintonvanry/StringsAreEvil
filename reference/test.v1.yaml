@@ -40,7 +40,7 @@ paths:
       operationId: get-accounts
       description: retrieve a list of accounts
       security:
-        - API Key - 1: []
+        - Peach Authentication: []
       parameters: []
   '/campaign/{campaignId}':
     get:
@@ -62,7 +62,7 @@ paths:
       operationId: get-campaign
       description: Retrieve a specific campaign by an identifier
       security:
-        - API Key - 1: []
+        - Peach Authentication: []
       parameters: []
     parameters:
       - schema:
@@ -111,11 +111,14 @@ components:
           minLength: 1
           maxLength: 256
   securitySchemes:
-    API Key - 1:
+    Peach Authentication:
       type: oauth2
       flows:
         implicit:
-          authorizationUrl: ''
-          refreshUrl: ''
-          scopes: {}
+          authorizationUrl: 'https://peach-mock.auth.us-west-2.amazoncognito.com/oauth2/authorize'
+          scopes:
+            openid: ''
       description: ''
+security:
+  - Peach Authentication:
+      - openid
