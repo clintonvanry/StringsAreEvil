@@ -50,7 +50,7 @@ paths:
         - Campaign
       responses:
         '200':
-          description: Successful retrieve of a campaign
+          description: Successful retrieval of a campaign
           content:
             application/json:
               schema:
@@ -62,7 +62,6 @@ paths:
                     name: Pepsi
         '404':
           $ref: '#/components/responses/NotFound'
-          
       operationId: get-campaign
       description: Retrieve a specific campaign by an identifier
       security:
