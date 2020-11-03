@@ -210,16 +210,19 @@ components:
     Ping:
       title: Ping
       type: object
-      properties:
-        message:
-          type: string
-        status:
-          type: integer
       x-examples:
         example-1:
           message: ok
           status: 200
       description: Result from a ping request
+      properties:
+        message:
+          type: string
+          example: ok
+        status:
+          type: integer
+          format: int32
+          example: 200
   securitySchemes:
     Peach Authentication:
       type: oauth2
