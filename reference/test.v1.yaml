@@ -41,6 +41,10 @@ paths:
                       name: Peach Demo UK
                     - id: 1921
                       name: Peach Demo Germany
+                example-listaccountGermany:
+                  value:
+                    - id: 1921
+                      name: Peach Demo Germany
           headers: {}
       operationId: get-accounts
       description: retrieve a list of accounts
