@@ -17,6 +17,8 @@ tags:
     description: Campaign api collection
   - name: User
     description: User api collection
+  - name: Health
+    description: End point to verify the status of the api
 paths:
   /accounts:
     get:
@@ -104,7 +106,8 @@ paths:
   /ping:
     get:
       summary: Health Check
-      tags: []
+      tags:
+        - Health
       responses:
         '200':
           description: OK
