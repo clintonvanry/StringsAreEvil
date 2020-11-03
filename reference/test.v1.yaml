@@ -112,6 +112,27 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ping'
+              examples:
+                example-1:
+                  value:
+                    message: ok
+                    status: 200
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ping'
+              examples:
+                example-1:
+                  value:
+                    message: Please contact Peach api.support@peachvideo.com
+                    status: 500
+          description: Internal Server Error Response
       operationId: get-ping
       description: health endpoint
       security: []
@@ -119,6 +140,12 @@ components:
   responses:
     NotFound:
       description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: Internal error encountered. Please contact api.support@peachvideo.com
       content:
         application/json:
           schema:
@@ -190,6 +217,19 @@ components:
         accountId:
           type: integer
           format: int32
+    Ping:
+      title: Ping
+      type: object
+      properties:
+        message:
+          type: string
+        status:
+          type: integer
+      x-examples:
+        example-1:
+          message: ok
+          status: 200
+      description: Result from a ping request
   securitySchemes:
     Peach Authentication:
       type: oauth2
