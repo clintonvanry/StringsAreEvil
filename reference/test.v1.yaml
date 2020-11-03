@@ -43,7 +43,8 @@ paths:
       operationId: get-accounts
       description: retrieve a list of accounts
       security:
-        - Peach Authentication: []
+        - Peach Authentication:
+            - account.read
       parameters: []
   '/campaign/{campaignId}':
     get:
@@ -67,7 +68,11 @@ paths:
       operationId: get-campaign
       description: Retrieve a specific campaign by an identifier
       security:
-        - Peach Authentication: []
+        - Peach Authentication:
+            - campaign.read
+            - campaign.create
+            - campaign.update
+            - campaign.delete
       parameters: []
     parameters:
       - schema:
@@ -93,6 +98,9 @@ paths:
                 $ref: '#/components/schemas/User'
       operationId: get-me
       description: returns the user information for the logged in user
+      security:
+        - Peach Authentication:
+            - user.read
   /ping:
     get:
       summary: Health Check
@@ -101,7 +109,8 @@ paths:
         '200':
           description: OK
       operationId: get-ping
-      description: ''
+      description: health endpoint
+      security: []
 components:
   responses:
     NotFound:
