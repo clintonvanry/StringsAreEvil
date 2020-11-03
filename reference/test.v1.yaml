@@ -123,16 +123,6 @@ paths:
                     status: 200
         '500':
           $ref: '#/components/responses/InternalServerError'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Ping'
-              examples:
-                example-1:
-                  value:
-                    message: Please contact Peach api.support@peachvideo.com
-                    status: 500
-          description: Internal Server Error Response
       operationId: get-ping
       description: health endpoint
       security: []
