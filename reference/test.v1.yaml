@@ -81,6 +81,7 @@ paths:
           type: integer
           format: int64
           minimum: 1
+          example: 123478
         name: campaignId
         in: path
         description: Campaign identifier
