@@ -229,6 +229,15 @@ paths:
             - campaign.create
             - campaign.update
             - campaign.delete
+    post:
+      summary: ''
+      operationId: post-campaigns
+      responses:
+        '200':
+          description: OK
+      security:
+        - Peach Authentication:
+            - campaign.create
 components:
   responses:
     NotFound:
