@@ -67,7 +67,7 @@ paths:
           name: keyword
           description: keyword to be used in the search for accounts
     parameters: []
-  '/campaigns/{campaignId}':
+  '/campaigns/{id}':
     get:
       summary: Retrieve campaign by an identifier
       tags:
@@ -101,7 +101,7 @@ paths:
           format: int64
           minimum: 1
           example: 123478
-        name: campaignId
+        name: id
         in: path
         description: Campaign identifier
         required: true
@@ -261,6 +261,59 @@ paths:
                 reference:
                   type: string
                   minLength: 1
+                  maxLength: 100
+                advertiser:
+                  type: string
+                  minLength: 1
+                  maxLength: 255
+                brand:
+                  type: string
+                  minLength: 1
+                  maxLength: 255
+              required:
+                - reference
+                - advertiser
+                - brand
+            examples:
+              example-1:
+                value:
+                  reference: '1397368'
+                  advertiser: Nespresso
+                  brand: Master Origin
+        description: Create a new campaign
+    put:
+      summary: Update Campaign
+      operationId: put-campaigns
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Campaign'
+              examples:
+                example-1:
+                  value:
+                    id: 2397368
+                    reference: '1397368'
+                    advertiser: Nespresso
+                    brand: Master Original
+                    createdOn: '2019-08-24T14:15:22Z'
+      parameters: []
+      description: Update campaign fields
+      security:
+        - Peach Authentication:
+            - campaign.update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                reference:
+                  type: string
+                  minLength: 1
                 advertiser:
                   type: string
                   minLength: 1
@@ -276,7 +329,16 @@ paths:
                 value:
                   reference: '1397368'
                   advertiser: Nespresso
-                  brand: Master Origin
+                  brand: Master Original
+    parameters:
+      - schema:
+          type: integer
+          format: int32
+          minimum: 1
+        name: ''
+        in: path
+        required: true
+        description: campaign identifier
 components:
   responses:
     NotFound:
