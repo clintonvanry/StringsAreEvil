@@ -166,7 +166,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Campaign'
               examples:
-                example-1:
+                example-Campaigns:
                   value:
                     - id: 1886532
                       reference: '205596444'
@@ -177,6 +177,11 @@ paths:
                       reference: Aunt Bessie's
                       advertiser: Nomad
                       brand: Aunt Bessie’s
+                      createdOn: '2020-10-27T16:37:41Z'
+                    - id: 1824466
+                      reference: '205593606'
+                      advertiser: SCREWFIX
+                      brand: UEFA League
                       createdOn: '2020-10-27T16:37:41Z'
       operationId: get-campaigns
       description: |
@@ -212,6 +217,12 @@ paths:
           name: after_row
           description: |
             to move to the next resultset use the last id from the results
+        - schema:
+            type: string
+            example: brand.desc
+          in: query
+          name: sort_by
+          description: 'sort campaign data by advertiser, brand or ref.'
       security:
         - Peach Authentication:
             - campaign.read
