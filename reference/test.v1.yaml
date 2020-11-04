@@ -155,7 +155,8 @@ paths:
   /campaigns:
     get:
       summary: Retrieve a list of campaigns
-      tags: []
+      tags:
+        - Campaign
       responses:
         '200':
           description: OK
@@ -281,6 +282,8 @@ paths:
                   advertiser: Nespresso
                   brand: Master Origin
         description: Create a new campaign
+      tags:
+        - Campaign
     put:
       summary: Update Campaign
       operationId: put-campaigns
@@ -330,6 +333,8 @@ paths:
                   reference: '1397368'
                   advertiser: Nespresso
                   brand: Master Original
+      tags:
+        - Campaign
     parameters: []
 components:
   responses:
