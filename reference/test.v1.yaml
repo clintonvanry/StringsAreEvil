@@ -156,6 +156,18 @@ paths:
         description: The fields to be updated
       tags:
         - Campaign
+    delete:
+      summary: ''
+      operationId: delete-campaigns-id
+      responses:
+        '200':
+          description: OK
+      description: remove the campaign
+      security:
+        - Peach Authentication:
+            - campaign.delete
+      tags:
+        - Campaign
   /me:
     get:
       summary: /me
