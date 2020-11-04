@@ -195,7 +195,6 @@ paths:
         - schema:
             type: integer
             example: 100
-            default: 100
             maximum: 10000
             format: int32
           in: query
@@ -208,6 +207,12 @@ paths:
           name: after_row
           description: |
             to move to the next resultset use the last id from the results
+      security:
+        - Peach Authentication:
+            - campaign.read
+            - campaign.create
+            - campaign.update
+            - campaign.delete
 components:
   responses:
     NotFound:
