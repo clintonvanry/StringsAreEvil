@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Peach Campaign API
   version: '1.0'
-  description: A collection of API to create and distribute campaign across the world
+  description: A collection of API to create and distribute campaigns across the world
   contact:
     name: API Support
     url: 'https://api.peachvideo.com/support'
@@ -37,10 +37,14 @@ paths:
               examples:
                 example-listaccounts:
                   value:
-                    - id: 1920
-                      name: Peach Demo UK
-                    - id: 1921
-                      name: Peach Demo Germany
+                    - id: 19466
+                      name: Peach Support UK
+                    - id: 20604
+                      name: Peach Support Germany
+                    - id: 21222
+                      name: Peach Support France
+                    - id: 13921
+                      name: Hogarth Worldwide Limited (UK/ROI)
                 example-listaccountGermany:
                   value:
                     - id: 1921
@@ -51,7 +55,14 @@ paths:
       security:
         - Peach Authentication:
             - account.read
-      parameters: []
+      parameters:
+        - schema:
+            type: string
+            example: peach
+          in: query
+          name: keyword
+          description: keyword to be used in the search for accounts
+    parameters: []
   '/campaign/{campaignId}':
     get:
       summary: Retrieve campaign by an identifier
