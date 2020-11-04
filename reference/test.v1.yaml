@@ -67,7 +67,7 @@ paths:
           name: keyword
           description: keyword to be used in the search for accounts
     parameters: []
-  '/campaign/{campaignId}':
+  '/campaigns/{campaignId}':
     get:
       summary: Retrieve campaign by an identifier
       tags:
@@ -152,6 +152,62 @@ paths:
       operationId: get-ping
       description: health endpoint
       security: []
+  /campaigns:
+    get:
+      summary: Retrieve a list of campaigns
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Campaign'
+              examples:
+                example-1:
+                  value:
+                    - id: 1
+                      reference: string
+                      advertiser: string
+                      brand: string
+                      createdOn: '2019-08-24T14:15:22Z'
+      operationId: get-campaigns
+      description: |
+        Retrieve a list of campaigns that below to your account
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: ref
+          description: filter campaigns by a reference
+        - schema:
+            type: string
+          in: query
+          name: advertiser
+          description: filter campaigns by an advertiser
+        - schema:
+            type: string
+          in: query
+          name: brand
+          description: filter campaigns by brand
+        - schema:
+            type: integer
+            example: 100
+            default: 100
+            maximum: 10000
+            format: int32
+          in: query
+          name: limit
+          description: the number of records to return for pagination
+        - schema:
+            type: integer
+            format: int32
+          in: query
+          name: after_row
+          description: |
+            to move to the next resultset use the last id from the results
 components:
   responses:
     NotFound:
@@ -191,17 +247,29 @@ components:
       type: object
       x-examples:
         example-1:
-          id: 1000
-          name: Pepsi
+          id: 1824984
+          reference: '205596660'
+          advertiser: Mattel
+          brand: Hot Wheels
+          createdOn: '2020-11-02T10:07:04Z'
       properties:
         id:
           type: integer
           format: int64
           minimum: 1
-        name:
+        reference:
           type: string
           minLength: 1
-          maxLength: 256
+          maxLength: 100
+        advertiser:
+          type: string
+          maxLength: 255
+        brand:
+          type: string
+          maxLength: 255
+        createdOn:
+          type: string
+          format: date-time
     Error:
       title: Error
       type: object
@@ -213,6 +281,11 @@ components:
       required:
         - code
         - message
+      description: Generic Error Response from API
+      x-examples:
+        example-1:
+          code: '500'
+          message: Internal Server Error
     User:
       title: User
       type: object
