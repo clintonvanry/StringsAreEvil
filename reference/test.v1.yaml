@@ -45,10 +45,14 @@ paths:
                       name: Peach Support France
                     - id: 13921
                       name: Hogarth Worldwide Limited (UK/ROI)
-                example-listaccountGermany:
+                example-2 keyword=Peach:
                   value:
-                    - id: 1921
-                      name: Peach Demo Germany
+                    - id: 19466
+                      name: Peach Support UK
+                    - id: 20604
+                      name: Peach Support Germany
+                    - id: 21222
+                      name: Peach Support France
           headers: {}
       operationId: get-accounts
       description: retrieve a list of accounts
@@ -114,6 +118,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
+              examples:
+                example-me:
+                  value:
+                    email: peach.user@peachvideo.com
+                    token: wu0CHimodZY4cjQR832qgKZ5j0RLOFLR-jeroSpFOzo.ACBnfGU9LzARjRgf0GsWOTuyg1GC5nvhC-v1GRyKQIg
+                    account: Peach Support UK
+                    accountId: 19466
       operationId: get-me
       description: returns the user information for the logged in user
       security:
@@ -209,8 +220,8 @@ components:
         example-1:
           email: peach.user@peachvideo.com
           token: wu0CHimodZY4cjQR832qgKZ5j0RLOFLR-jeroSpFOzo.ACBnfGU9LzARjRgf0GsWOTuyg1GC5nvhC-v1GRyKQIg
-          account: Peach Demo
-          accountId: 124589
+          account: Peach Support UK
+          accountId: 19466
       description: Schema the describes the current logged in user
       properties:
         email:
