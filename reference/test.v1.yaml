@@ -230,14 +230,53 @@ paths:
             - campaign.update
             - campaign.delete
     post:
-      summary: ''
+      summary: Create Campaign
       operationId: post-campaigns
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Campaign'
+              examples:
+                example-1:
+                  value:
+                    id: 2397368
+                    reference: '1397368'
+                    advertiser: Nespresso
+                    brand: Master Origin
+                    createdOn: '2019-08-24T14:15:22Z'
       security:
         - Peach Authentication:
             - campaign.create
+      description: Create campaign
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                reference:
+                  type: string
+                  minLength: 1
+                advertiser:
+                  type: string
+                  minLength: 1
+                brand:
+                  type: string
+                  minLength: 1
+              required:
+                - reference
+                - advertiser
+                - brand
+            examples:
+              example-1:
+                value:
+                  reference: '1397368'
+                  advertiser: Nespresso
+                  brand: Master Origin
 components:
   responses:
     NotFound:
