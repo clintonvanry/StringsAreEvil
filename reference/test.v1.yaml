@@ -157,7 +157,7 @@ paths:
       tags:
         - Campaign
     delete:
-      summary: ''
+      summary: Remove campaign
       operationId: delete-campaigns-id
       responses:
         '200':
