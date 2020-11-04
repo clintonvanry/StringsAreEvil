@@ -285,8 +285,8 @@ paths:
       summary: Create Campaign
       operationId: post-campaigns
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:
@@ -335,7 +335,6 @@ paths:
         description: Create a new campaign
       tags:
         - Campaign
-    
 components:
   responses:
     NotFound:
