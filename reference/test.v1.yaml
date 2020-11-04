@@ -330,15 +330,7 @@ paths:
                   reference: '1397368'
                   advertiser: Nespresso
                   brand: Master Original
-    parameters:
-      - schema:
-          type: integer
-          format: int32
-          minimum: 1
-        name: ''
-        in: path
-        required: true
-        description: campaign identifier
+    parameters: []
 components:
   responses:
     NotFound:
