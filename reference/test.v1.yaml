@@ -82,8 +82,11 @@ paths:
               examples:
                 example-1:
                   value:
-                    id: 1000
-                    name: Pepsi
+                    id: 1884577
+                    reference: Aunt Bessie's
+                    advertiser: Nomad
+                    brand: Aunt Bessie’s
+                    createdOn: '2020-10-27T16:37:41Z'
         '404':
           $ref: '#/components/responses/NotFound'
       operationId: get-campaign
