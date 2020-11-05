@@ -229,27 +229,16 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Campaign'
+                $ref: '#/components/schemas/PaginationData'
               examples:
-                example-Campaigns:
+                example-1:
                   value:
-                    - id: 1886532
-                      reference: '205596444'
-                      advertiser: Mattel
-                      brand: Hot Wheels
-                      createdOn: '2020-10-27T16:37:41Z'
-                    - id: 1884577
-                      reference: Aunt Bessie's
-                      advertiser: Nomad
-                      brand: Aunt Bessie’s
-                      createdOn: '2020-10-27T16:37:41Z'
-                    - id: 1824466
-                      reference: '205593606'
-                      advertiser: SCREWFIX
-                      brand: UEFA League
-                      createdOn: '2020-10-27T16:37:41Z'
+                    meta:
+                      totalRows: 1
+                      pageSize: 1
+                    data:
+                      '': string
+          headers: {}
       operationId: get-campaigns
       description: |
         Retrieve a list of campaigns that below to your account
@@ -347,6 +336,10 @@ paths:
                   reference: '1397368'
                   advertiser: Nespresso
                   brand: Master Origin
+          application/xml:
+            schema:
+              type: object
+              properties: {}
         description: Create a new campaign
       tags:
         - Campaign
@@ -384,6 +377,8 @@ components:
           description: account name
           minLength: 1
           maxLength: 256
+      x-tags:
+        - Account
     Campaign:
       title: Campaign
       type: object
@@ -412,6 +407,8 @@ components:
         createdOn:
           type: string
           format: date-time
+      x-tags:
+        - Campaign
     Error:
       title: Error
       type: object
@@ -448,6 +445,8 @@ components:
         accountId:
           type: integer
           format: int32
+      x-tags:
+        - User
     Ping:
       title: Ping
       type: object
@@ -464,6 +463,39 @@ components:
           type: integer
           format: int32
           example: 200
+      x-tags:
+        - Health
+    PaginationData:
+      title: PaginationData
+      type: object
+      x-examples:
+        example-1:
+          meta:
+            totalRows: 1
+            pageSize: 1
+          data: {}
+      x-tags:
+        - Campaign
+      properties:
+        meta:
+          type: object
+          properties:
+            totalRows:
+              type: integer
+              example: 1
+              format: int32
+            pageSize:
+              type: integer
+              example: 1
+              format: int32
+          required:
+            - totalRows
+            - pageSize
+        data:
+          type: object
+          properties:
+            '':
+              type: string
   securitySchemes:
     Peach Authentication:
       type: oauth2
