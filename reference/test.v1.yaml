@@ -19,6 +19,7 @@ tags:
     description: User api collection
   - name: Health
     description: End point to verify the status of the api
+  - name: Ads
 paths:
   /accounts:
     get:
@@ -229,15 +230,40 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PaginationData'
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/PaginationMetaData'
+                  data:
+                    type: object
+                    properties:
+                      campaign:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Campaign'
               examples:
                 example-1:
                   value:
                     meta:
-                      totalRows: 1
+                      totalRows: 3
                       pageSize: 1
                     data:
-                      '': string
+                      campaign:
+                        - id: 1886532
+                          reference: '205596444'
+                          advertiser: Mattel
+                          brand: Hot Wheels
+                          createdOn: '2020-10-27T16:37:41Z'
+                        - id: 1884577
+                          reference: Aunt Bessie's
+                          advertiser: Nomad
+                          brand: Aunt Bessie’s
+                          createdOn: '2020-10-27T16:37:41Z'
+                        - id: 1824466
+                          reference: '205593606'
+                          advertiser: SCREWFIX
+                          brand: UEFA League
+                          createdOn: '2020-10-27T16:37:41Z'
           headers: {}
       operationId: get-campaigns
       description: |
@@ -343,6 +369,24 @@ paths:
         description: Create a new campaign
       tags:
         - Campaign
+  '/campaigns/{id}/ads':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Retrieve ads for your campaign
+      tags:
+        - Ads
+      responses: {}
+      operationId: get-campaigns-id-ads
+      description: Retrieve a list of ads that belong to your campaign
+      security:
+        - Peach Authentication:
+            - campaign.read
+            - ads.read
 components:
   responses:
     NotFound:
@@ -465,37 +509,39 @@ components:
           example: 200
       x-tags:
         - Health
-    PaginationData:
-      title: PaginationData
+    PaginationMetaData:
+      title: PaginationMetaData
       type: object
       x-examples:
         example-1:
           meta:
             totalRows: 1
             pageSize: 1
-          data: {}
       x-tags:
         - Campaign
       properties:
-        meta:
-          type: object
-          properties:
-            totalRows:
-              type: integer
-              example: 1
-              format: int32
-            pageSize:
-              type: integer
-              example: 1
-              format: int32
-          required:
-            - totalRows
-            - pageSize
-        data:
-          type: object
-          properties:
-            '':
-              type: string
+        totalRows:
+          type: integer
+        pageSize:
+          type: integer
+    Ad:
+      title: Ad
+      type: object
+      properties:
+        id:
+          type: integer
+        campaignId:
+          type: integer
+        name:
+          type: string
+        duration:
+          type: string
+        title:
+          type: string
+        createdOn:
+          type: string
+      x-tags:
+        - Ads
   securitySchemes:
     Peach Authentication:
       type: oauth2
@@ -510,6 +556,7 @@ components:
             campaign.delete: Delete campaign
             user.read: read user data
             account.read: read account data
+            ads.read: read ads that belong to a campaign
       description: ''
 security:
   - Peach Authentication:
