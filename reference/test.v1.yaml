@@ -380,13 +380,50 @@ paths:
       summary: Retrieve ads for your campaign
       tags:
         - Ads
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/PaginationMetaData'
+                  data:
+                    type: object
+                    properties:
+                      ad:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Ad'
+              examples:
+                example-1:
+                  value:
+                    meta:
+                      totalRows: 1
+                      pageSize: 1
+                    data:
+                      ad:
+                        - id: 1892368
+                          campaignId: 1892366
+                          name: HOG/MAHW178/020
+                          duration: '00:20:00'
+                          title: Sky Crash Tower + Argos Tag
+                          createdOn: '2020-08-27T10:42:56Z'
       operationId: get-campaigns-id-ads
       description: Retrieve a list of ads that belong to your campaign
       security:
         - Peach Authentication:
             - campaign.read
             - ads.read
+      parameters:
+        - schema:
+            type: integer
+            format: int32
+          in: query
+          name: limit
+          description: the number of records to return for pagination
 components:
   responses:
     NotFound:
