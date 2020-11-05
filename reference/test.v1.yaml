@@ -58,7 +58,7 @@ paths:
       operationId: get-accounts
       description: retrieve a list of accounts
       security:
-        - Peach Authentication:
+        - PeachAuthentication:
             - account.read
       parameters:
         - schema:
@@ -93,7 +93,7 @@ paths:
       operationId: get-campaign
       description: Retrieve a specific campaign by an identifier
       security:
-        - Peach Authentication:
+        - PeachAuthentication:
             - campaign.read
             - campaign.create
             - campaign.update
@@ -128,7 +128,7 @@ paths:
                     brand: Master Original
                     createdOn: '2019-08-24T14:15:22Z'
       security:
-        - Peach Authentication:
+        - PeachAuthentication:
             - campaign.update
       description: Update campaign fields
       requestBody:
@@ -168,7 +168,7 @@ paths:
           description: OK
       description: remove the campaign
       security:
-        - Peach Authentication:
+        - PeachAuthentication:
             - campaign.delete
       tags:
         - Campaign
@@ -195,7 +195,7 @@ paths:
       operationId: get-me
       description: returns the user information for the logged in user
       security:
-        - Peach Authentication:
+        - PeachAuthentication:
             - user.read
   /ping:
     get:
@@ -306,7 +306,7 @@ paths:
           name: sort_by
           description: 'sort campaign data by advertiser, brand or ref.'
       security:
-        - Peach Authentication:
+        - PeachAuthentication:
             - campaign.read
             - campaign.create
             - campaign.update
@@ -330,7 +330,7 @@ paths:
                     brand: Master Origin
                     createdOn: '2019-08-24T14:15:22Z'
       security:
-        - Peach Authentication:
+        - PeachAuthentication:
             - campaign.create
       description: Create campaign
       requestBody:
@@ -414,7 +414,7 @@ paths:
       operationId: get-campaigns-id-ads
       description: Retrieve a list of ads that belong to your campaign
       security:
-        - Peach Authentication:
+        - PeachAuthentication:
             - campaign.read
             - ads.read
       parameters:
@@ -580,7 +580,7 @@ components:
       x-tags:
         - Ads
   securitySchemes:
-    Peach Authentication:
+    PeachAuthentication:
       type: oauth2
       flows:
         implicit:
@@ -596,5 +596,5 @@ components:
             ads.read: read ads that belong to a campaign
       description: ''
 security:
-  - Peach Authentication:
+  - PeachAuthentication:
       - openid
